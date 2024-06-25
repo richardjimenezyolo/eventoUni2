@@ -15,6 +15,7 @@
       <select v-model="form.type" required>
         <option value="" disabled selected>Tipo de evento</option>
         <option>Curso</option>
+        <option>Conferencia</option>
         <option>Taller</option>
         <option>otro</option>
       </select required>
