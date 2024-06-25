@@ -22,9 +22,6 @@
       </footer>
     </article>
   </form>
-  <pre>
-    {{ form }}
-  </pre>
 </template>
 
 <script setup>

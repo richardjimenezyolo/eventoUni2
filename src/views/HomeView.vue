@@ -15,9 +15,6 @@
       </ul>
     </article>
   </section>
-  <pre>
-    {{ events }}
-  </pre>
 </template>
 
 <script setup>
