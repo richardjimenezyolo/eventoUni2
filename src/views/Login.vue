@@ -55,7 +55,7 @@ const save = async () => {
       return
     }
 
-    const userCred = await signInWithEmailAndPassword(auth, email, password)
+    const userCred = await signInWithEmailAndPassword(auth, email, pwd)
     router.push('/')
   } catch (e) {
     alert(e)
