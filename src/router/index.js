@@ -16,6 +16,10 @@ const router = createRouter({
     {
       path: '/events/form',
       component: () => import('../views/events/Form.vue')
+    },
+    {
+      path: '/events/:id',
+      component: () => import('../views/events/Detail.vue')
     }
   ]
 })
