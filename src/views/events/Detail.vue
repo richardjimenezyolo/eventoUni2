@@ -9,33 +9,33 @@
     <table class="striped">
       <tbody>
         <tr>
-          <th>Tipo:</th>
+          <th class="font-bold">Tipo:</th>
           <td>{{ event.type }}</td>
         </tr>
         <tr>
-          <th>Fecha</th>
+          <th class="font-bold">Fecha</th>
           <td>{{ new Date(event.at).toLocaleString() }}</td>
         </tr>
         <tr>
-          <th>Universidad:</th>
+          <th class="font-bold">Universidad:</th>
           <td>{{ event.college }}</td>
         </tr>
         <tr>
-          <th>Descripción:</th>
+          <th class="font-bold">Descripción:</th>
           <td>{{ event.description }}</td>
         </tr>
         <tr v-if="author">
-          <th>Creado por:</th>
+          <th class="font-bold">Creado por:</th>
           <td>
             {{ author.name }} &nbsp; &centerdot; &nbsp;
             <a :href="`mailto:${author.email}`">{{ author.email }}</a>
           </td>
         </tr>
         <tr v-if="subscribers.length">
-          <th>Subscriptores:</th>
+          <th class="font-bold">Subscriptores:</th>
           <td>
             <ul>
-              <li v-for="user in subscribers" :key="user.uid">
+              <li class="pico-color-pink-350" v-for="user in subscribers" :key="user.uid">
                 {{ user.name }}
               </li>
             </ul>
