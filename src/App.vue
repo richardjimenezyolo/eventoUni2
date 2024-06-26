@@ -3,7 +3,9 @@
     <ul>
       <li>
         <!-- <a href="/"></a> -->
-        <RouterLink to="/"><h2>Eventos Uni</h2></RouterLink>
+        <RouterLink to="/">
+          <h2 class="pico-color-pink-500 m-0">Eventos Uni</h2>
+        </RouterLink>
       </li>
     </ul>
     <ul>

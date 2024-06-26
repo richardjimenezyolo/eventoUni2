@@ -3,7 +3,7 @@
   <article class="lg:w-2/3 lg:mx-auto" v-else>
     <header class="flex justify-between items-center">
       <h3 class="m-0">{{ event.name }}</h3>
-      <button class="outline" @click="subscribe">Subscribirme</button>
+      <button v-if="userStore.user" class="outline" @click="subscribe">Subscribirme</button>
     </header>
 
     <table class="striped">
