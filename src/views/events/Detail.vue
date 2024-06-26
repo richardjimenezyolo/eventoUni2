@@ -1,6 +1,6 @@
 <template>
   <article v-if="loading" aria-busy="true"></article>
-  <article class="lg:w-2/3 lg:mx-auto" v-else>
+  <article class="lg:mx-auto xl:w-2/3" v-else>
     <header class="flex justify-between items-center">
       <h3 class="m-0">{{ event.name }}</h3>
       <button v-if="userStore.user" class="outline" @click="subscribe">Subscribirme</button>
@@ -79,19 +79,24 @@ onMounted(async () => {
   loading.value = true
   eventDocRef = doc(db, 'events', route.params.id)
   unSubDoc = onSnapshot(eventDocRef, async (eventDoc) => {
-    loading.value = true
-    event.value = eventDoc.data()
-    if (!author.value) {
-      author.value = (await getDoc(doc(db, 'users', event.value.user_uid))).data()
-    }
-    if (event.value.subscribers) {
-      const q = query(collection(db, 'users'), where('uid', 'in', event.value.subscribers))
+    try {
+      loading.value = true
+      event.value = eventDoc.data()
+      if (!author.value  && event.value.user_uid) {
+        author.value = (await getDoc(doc(db, 'users', event.value.user_uid))).data()
+      }
+      if (event.value.subscribers) {
+        const q = query(collection(db, 'users'), where('uid', 'in', event.value.subscribers));
 
-      ;(await getDocs(q)).forEach((userDoc) => {
-        subscribers.value.push(userDoc.data())
-      })
+        (await getDocs(q)).forEach((userDoc) => {
+          subscribers.value.push(userDoc.data())
+        })
+      }
+    } catch (e) {
+      modalStore.alert(e, 'Error')
+    } finally {
+      loading.value = false
     }
-    loading.value = false
   })
 })
 

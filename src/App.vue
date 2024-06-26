@@ -4,7 +4,7 @@
       <li>
         <!-- <a href="/"></a> -->
         <RouterLink to="/">
-          <h2 class="pico-color-pink-500 m-0">Eventos Uni</h2>
+          <h2 class="m-0 pico-color-pink-500">Eventos Uni</h2>
         </RouterLink>
       </li>
     </ul>
@@ -49,14 +49,17 @@
 
 <script setup>
 import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { onMounted } from 'vue'
 import { auth } from './firebase'
 import { useAuthStore } from './stores/counter'
-import { useRouter } from 'vue-router'
 import { useModal } from './stores/modal'
 
-const router = useRouter()
 const authStore = useAuthStore()
 const modalStore = useModal()
+
+onMounted(() => {
+  changeTheme(localStorage.getItem('theme'))
+})
 
 onAuthStateChanged(auth, (user) => {
   console.log(user)
@@ -65,6 +68,7 @@ onAuthStateChanged(auth, (user) => {
 
 const changeTheme = (theme) => {
   document.querySelector('html').setAttribute('data-theme', theme)
+  localStorage.setItem('theme', theme)
 }
 
 const logOut = async () => {
